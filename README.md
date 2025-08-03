@@ -32,5 +32,25 @@ A simple full-stack Leave Application System where students can apply for leave,
 
 ## 🧾 Project Structure
 
+leave-application-system/
+├── src/
+│ └── main/
+│ ├── java/
+│ │ └── com/example/leave/
+│ │ ├── controller/
+│ │ │ └── LeaveApplicationController.java
+│ │ ├── model/
+│ │ │ └── LeaveApplication.java
+│ │ ├── repository/
+│ │ │ └── LeaveApplicationRepository.java
+│ │ └── service/
+│ │ └── EmailService.java
+│ └── resources/
+│ ├── application.properties
+│ └── static/
+│ └── index.html
+└── pom.xml
+
+
 
 
