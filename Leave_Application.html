@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leave Application System</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .form-card {
+      background-color: #ffffff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .form-card h2 {
+      margin-bottom: 20px;
+      font-size: 22px;
+      color: #444;
+    }
+
+    input, button {
+      padding: 12px;
+      margin: 8px 0;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      cursor: pointer;
+    }
+
+    .leave-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .leave-item {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .leave-item strong {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .leave-item p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .delete-btn {
+      
+      top: 15px;
+      right: 15px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Leave Application System</h1>
+
+    <div class="form-card">
+      <h2>Apply for Leave</h2>
+      <form id="leaveForm">
+        <input type="text" id="name" placeholder="Student Name" required>
+        <input type="text" id="reason" placeholder="Reason for Leave" required>
+        <input type="date" id="startDate" required>
+        <input type="date" id="endDate" required>
+        <button type="submit">Submit Application</button>
+      </form>
+    </div>
+
+    <div>
+      <h2 style="color:#444;">Submitted Leave Applications</h2>
+      <div class="leave-list" id="leaveList"></div>
+    </div>
+  </div>
+
+  <script>
+    const apiUrl = 'http://localhost:8080';
+
+    const form = document.getElementById('leaveForm');
+    const leaveList = document.getElementById('leaveList');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const leave = {
+        name: document.getElementById('name').value,
+        reason: document.getElementById('reason').value,
+        fromDate: document.getElementById('startDate').value,
+        toDate: document.getElementById('endDate').value
+      };
+
+      await fetch(`${apiUrl}/add`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(leave)
+      });
+
+      form.reset();
+      loadLeaves();
+    });
+
+    async function loadLeaves() {
+      const res = await fetch(`${apiUrl}/all`);
+      const data = await res.json();
+
+      leaveList.innerHTML = '';
+      data.forEach(leave => {
+        leaveList.innerHTML += `
+          <div class="leave-item">
+            <strong>${leave.name}</strong>
+            <p>Reason: ${leave.reason}</p>
+            <p>From: ${leave.fromDate} → To: ${leave.toDate}</p>
+            <button class="delete-btn" onclick="deleteLeave(${leave.id})">Leave Saction </button>
+          </div>
+        `;
+      });
+    }
+
+    async function deleteLeave(id) {
+      await fetch(`${apiUrl}/delete/${id}`, { method: 'DELETE' });
+      loadLeaves();
+    }
+
+    window.onload = loadLeaves;
+  </script>
+
+</body>
+</html>
