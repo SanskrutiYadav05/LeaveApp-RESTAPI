@@ -57,7 +57,7 @@ A simple full-stack Leave Application System where students can apply for leave,
 - Spring Boot 3.x (Java 21)
 - PostgreSQL
 - HTML, CSS, JavaScript (Frontend)
-- JavaMailSender (for email notification)
+
 
 ---
 
