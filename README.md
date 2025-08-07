@@ -103,6 +103,7 @@ leave-application-system/
 │ └── index.html
 └── pom.xml
 
+![My Code Screenshot](<img width="1889" height="982" alt="Screenshot 2025-08-06 153233" src="https://github.com/user-attachments/assets/3e85b417-5dd4-44b3-a60f-f73d3c5e00b0" />)
 
 
 
