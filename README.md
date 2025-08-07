@@ -31,7 +31,7 @@ A simple full-stack Leave Application System where students can apply for leave,
 ---
 
 ## 🧾 Project Structure
-
+```
 leave-application-system/
 ├── src/
 │ └── main/
@@ -50,6 +50,7 @@ leave-application-system/
 │ └── static/
 │ └── index.html
 └── pom.xml
+```
 # 📌 Leave Application System
 
 A simple full-stack Leave Application System where students can apply for leave, view application status, and receive email notifications upon leave sanction. Built using:
@@ -82,26 +83,7 @@ A simple full-stack Leave Application System where students can apply for leave,
 
 ---
 
-## 🧾 Project Structure
 
-leave-application-system/
-├── src/
-│ └── main/
-│ ├── java/
-│ │ └── com/example/leave/
-│ │ ├── controller/
-│ │ │ └── LeaveApplicationController.java
-│ │ ├── model/
-│ │ │ └── LeaveApplication.java
-│ │ ├── repository/
-│ │ │ └── LeaveApplicationRepository.java
-│ │ └── service/
-│ │ └── EmailService.java
-│ └── resources/
-│ ├── application.properties
-│ └── static/
-│ └── index.html
-└── pom.xml
 
 <img width="1889" height="982" alt="Screenshot 2025-08-06 153233" src="https://github.com/user-attachments/assets/3e85b417-5dd4-44b3-a60f-f73d3c5e00b0" />
 
